@@ -65,6 +65,13 @@ const MenuTitle = styled.a`
 	padding-left: 8px;
 	align-self: center;
 	text-transform: uppercase;
+
+	text-decoration: none;
+	color: ${(props: soci.theme.StyleProps) => props.theme.menu.color};
+
+	&:visited {
+		color: ${(props: soci.theme.StyleProps) => props.theme.menu.color} !important;
+	}
 `;
 
 const MenuStatus = styled.img`
@@ -103,6 +110,14 @@ const SubmenuList = styled.ul`
 		transition-duration: 0.5s;
 		transition-property: opacity, transform;
 
+		& > a {
+			text-decoration: none;
+			color: ${(props: soci.theme.StyleProps) => props.theme.menu.color};
+
+			&:visited {
+				color: ${(props: soci.theme.StyleProps) => props.theme.menu.color} !important;
+			}
+		}
 	}
 	
 	&.open{
@@ -132,6 +147,15 @@ const SubmenuList = styled.ul`
 
 			&:hover {
 				filter: brightness(110%);
+			}
+
+			& > a.open {
+				text-decoration: none;
+				color: ${(props: soci.theme.StyleProps) => props.theme.menu.selectedColor};
+
+				&:visited {
+					color: ${(props: soci.theme.StyleProps) => props.theme.menu.selectedColor} !important;
+				}
 			}
 		}
 	}
@@ -181,16 +205,18 @@ export function Menu({ notifications }: { notifications: number; }): JSX.Element
 	]);
 
 	const [openMenu, setOpenMenu] = useState("Publish");
+	const [openSubmenu, setOpenSubmenu] = useState("Feed");
 
 	const getSubmenuElements = useCallback((submenus: any[]): JSX.Element[] => {
 		return submenus.map((submenu, index) => {
+			const isOpen = (openSubmenu === submenu.name);
+
 			return (
 				<li key={`${submenu.name} ${index}`}>
-					{submenu.name}
+					<a href={submenu.link} className={isOpen ? "open" : ""}>{submenu.name}</a>
 				</li>
 			);
 		});
-
 	}, []);
 
 	const menuElements = menus.map((menu, index) => {
