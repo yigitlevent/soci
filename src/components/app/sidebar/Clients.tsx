@@ -68,7 +68,7 @@ export function Clients({ selectedClient }: { selectedClient: string; }): JSX.El
 
 				{(client.notifications > 0) && !isSelected ? <NotificationsCircle amount={client.notifications} /> : null}
 
-				<a href={"#"}>
+				<a href={"/#"}>
 					<ClientIcon
 						src={`./assets/mock/${client.image}`}
 						title={client.name}

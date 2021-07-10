@@ -212,12 +212,12 @@ export function Menu({ notifications }: { notifications: number; }): JSX.Element
 			const isOpen = (openSubmenu === submenu.name);
 
 			return (
-				<li key={`${submenu.name} ${index}`}>
+				<li key={`${submenu.name} ${index}`} onClick={() => setOpenSubmenu(submenu.name)}>
 					<a href={submenu.link} className={isOpen ? "open" : ""}>{submenu.name}</a>
 				</li>
 			);
 		});
-	}, []);
+	}, [openSubmenu]);
 
 	const menuElements = menus.map((menu, index) => {
 		const isOpen = (openMenu === menu.name);
@@ -240,7 +240,7 @@ export function Menu({ notifications }: { notifications: number; }): JSX.Element
 	return (
 		<MenuListWrapper>
 
-			<MenuWrapper onClick={() => { }}>
+			<MenuWrapper onClick={() => { /* */ }}>
 				<MenuTop open={(openMenu === "Notifications")}>
 					<MenuIcon src={"./assets/icons/menu_notifications.svg"} />
 					<MenuTitle>Notifications</MenuTitle>
