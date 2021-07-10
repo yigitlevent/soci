@@ -2,8 +2,20 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 	@font-face {
-        font-family: ${(props: soci.theme.StyleProps) => props.regularFont};
-        src: ${(props: soci.theme.StyleProps) => `url("/assets/fonts/${props.regularFont}.ttf")`};
+        font-family: "Raleway-Medium";
+        src: url("/assets/fonts/Raleway-Medium.ttf");
+		font-display: block;
+    };
+
+	@font-face {
+        font-family: "Raleway-Bold";
+        src: url("/assets/fonts/Raleway-Bold.ttf");
+		font-display: block;
+    };
+	
+	@font-face {
+        font-family: "BarlowSC-Regular";
+        src: url("/assets/fonts/BarlowSemiCondensed-Regular.ttf");
 		font-display: block;
     };
 
@@ -12,11 +24,11 @@ export const GlobalStyle = createGlobalStyle`
 		tab-size: 4;
 
 		font-kerning: auto;
-		font-size: 1.00em;
+		font-size: 14px;
 		letter-spacing: -0.1px;
 		word-spacing: normal;
 
-		font-family: ${(props: soci.theme.StyleProps) => props.regularFont};
+		font-family: "Raleway-Medium";
 	}
 
 	html {

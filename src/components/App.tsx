@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { Menu } from "./menu/Menu";
-import { Body } from "./body/Body";
+import { Sidebar } from "./app/Sidebar";
+import { Body } from "./app/Body";
 
 const AppWrapper = styled.div`
 	width: 100%;
@@ -21,7 +21,7 @@ export function App(): JSX.Element {
 
 	return (
 		<AppWrapper>
-			<Menu />
+			<Sidebar />
 			<Body />
 		</AppWrapper>
 	);

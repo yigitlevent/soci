@@ -10,8 +10,7 @@ import { App } from "./components/App";
 ReactDOM.render(
 	<StrictMode>
 		<ThemeProvider theme={MainTheme}>
-			<GlobalStyle regularFont={"Roboto-Regular"} />
-
+			<GlobalStyle />
 			<App />
 		</ThemeProvider>
 	</StrictMode >,
