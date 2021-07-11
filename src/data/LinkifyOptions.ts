@@ -1,4 +1,4 @@
-import { LinkEntityType, Options } from "linkifyjs";
+import { Options } from "linkifyjs";
 
 export const LinkifyOptions: Options = {
 	attributes: null,
