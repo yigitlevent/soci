@@ -24,7 +24,7 @@ namespace soci {
 		}
 
 		interface Actions {
-			status: 0 | 1 | 2 | 3 | 4;
+			status: soci.data.PostStatuses;
 		}
 
 		interface Date {
@@ -41,7 +41,7 @@ namespace soci {
 		}
 
 		interface Sidebar {
-			status: 0 | 1 | 2 | 3 | 4;
+			status: soci.data.PostStatuses;
 			channel: string;
 		}
 

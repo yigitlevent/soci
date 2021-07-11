@@ -2,6 +2,8 @@ namespace soci {
 
 	namespace data {
 
+		type PostStatuses = 0 | 1 | 2 | 3 | 4;
+
 		interface Posts {
 			posts_by_date?: {
 				[key: string]: Post[];
@@ -16,7 +18,7 @@ namespace soci {
 			link: string;
 
 			is_published: boolean;
-			status: 0 | 1 | 2 | 3 | 4;
+			status: soci.data.PostStatuses;
 
 			entry: {
 				type: string;
