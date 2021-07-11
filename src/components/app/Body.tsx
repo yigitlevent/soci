@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useContext, useEffect } from "react";
+import { Fragment, useCallback, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { MainContext } from "../App";
@@ -15,13 +15,15 @@ const BodyWrapper = styled.div`
 `;
 
 export function Body(): JSX.Element {
+	const [initialized, setInitialized] = useState(false);
 	const { currentMenu, currentSubmenu, currentPosts, setCurrentPosts } = useContext(MainContext);
 
 	const getPosts = useCallback((path: string): void => {
 		fetch(path)
 			.then(response => response.json())
 			.then((data: soci.data.Posts) => setCurrentPosts(data))
-			.catch((error) => console.error(error));
+			.catch((error) => console.log(error))
+			.finally(() => setInitialized(true));
 	}, [setCurrentPosts]);
 
 	useEffect(() => {
@@ -35,15 +37,15 @@ export function Body(): JSX.Element {
 
 	return (
 		<BodyWrapper>
-
-			{(currentPosts.posts_by_date)
-				? <Fragment>
-					<Hints />
-					{Object.keys(currentPosts.posts_by_date).reverse().map((key, index) => <PostGroup key={index} groupKey={key} />)}
-				</Fragment>
-				: <div>[Not Implemented]</div>
+			{(initialized)
+				? (currentPosts.posts_by_date)
+					? <Fragment>
+						<Hints />
+						{Object.keys(currentPosts.posts_by_date).reverse().map((key, index) => <PostGroup key={index} groupKey={key} />)}
+					</Fragment>
+					: <div>[Not Implemented]</div>
+				: <div>Loading...</div>
 			}
-
 		</BodyWrapper>
 	);
 }
