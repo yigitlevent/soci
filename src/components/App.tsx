@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import { GlobalStyle } from "../theme/global";
-import { MainTheme } from "../theme/_themes";
+import { DarkTheme, MainTheme, PastelTheme } from "../theme/_themes";
 
 import { Sidebar } from "./app/Sidebar";
 import { Body } from "./app/Body";
@@ -22,10 +22,21 @@ const AppWrapper = styled.div`
 	grid-template-rows: 1fr;
 `;
 
+const ThemeChanger = styled.button<{ top: number; }>`
+	position: absolute;
+	right: 70px;
+	top: ${p => p.top}px;
+
+	width: max-content;
+	height: max-content;	
+
+	font-size: 0.7em;
+`;
+
 export const MainContext = createContext({} as soci.context.Main);
 
 export function App(): JSX.Element {
-	const [currentTheme, setCurrentTheme] = useState(MainTheme);
+	const [currentTheme, setCurrentTheme] = useState(DarkTheme);
 	const [currentClient, setCurrentClient] = useState("Client #3");
 	const [currentMenu, setCurrentMenu] = useState("Publish");
 	const [currentSubmenu, setCurrentSubmenu] = useState("Feed");
@@ -43,6 +54,10 @@ export function App(): JSX.Element {
 					<ProfileButton />
 					<Sidebar />
 					<Body />
+
+					<ThemeChanger top={120} onClick={() => setCurrentTheme(MainTheme)}>Main Theme</ThemeChanger>
+					<ThemeChanger top={140} onClick={() => setCurrentTheme(PastelTheme)}>Pastel Theme</ThemeChanger>
+					<ThemeChanger top={160} onClick={() => setCurrentTheme(DarkTheme)}>Dark Theme</ThemeChanger>
 				</AppWrapper>
 
 			</MainContext.Provider>

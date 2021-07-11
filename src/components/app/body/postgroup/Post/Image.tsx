@@ -13,7 +13,7 @@ const ImageWrapper = styled.img`
 	object-fit: cover;
 `;
 
-export function Image({ link }: { link: string; }): JSX.Element {
+export function Image({ link }: soci.props.Image): JSX.Element {
 	const imageRef = createRef<HTMLImageElement>();
 
 	useEffect(() => {

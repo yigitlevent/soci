@@ -9,9 +9,10 @@ const MenuIcon = styled.img`
 	height: 20px;
 	cursor: pointer;
 	filter: opacity(0.3);
+	filter: brightness(70%);
 `;
 
-export function Actions({ status }: { status: 0 | 1 | 2 | 3 | 4; }): JSX.Element {
+export function Actions({ status }: soci.props.Actions): JSX.Element {
 	return (
 		<ActionsWrapper>
 			{(status === 0) ? <MenuIcon src="./assets/icons/action_approve.svg" title="Approve" /> : null}

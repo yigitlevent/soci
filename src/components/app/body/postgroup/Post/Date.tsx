@@ -11,7 +11,7 @@ const DateWrapper = styled.div`
 	font-family: "BarlowSC-Regular";
 `;
 
-export function Date({ isPublished, date }: { isPublished: boolean; date: string; }): JSX.Element {
+export function Date({ isPublished, date }: soci.props.Date): JSX.Element {
 
 	return (
 		<DateWrapper title={(isPublished) ? "Published at" : "Updated at"}>

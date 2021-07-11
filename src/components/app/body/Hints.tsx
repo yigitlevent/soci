@@ -22,7 +22,7 @@ const Bullet = styled.div<{ color: string; }>`
 const Name = styled.div`
 	display: inline-block;
 	padding: 0 25px 0 0;
-	color: #444444;
+	color: ${(props: soci.theme.StyleProps) => props.theme.app.hintColor};
 	vertical-align: middle;
 `;
 

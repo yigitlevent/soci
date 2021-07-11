@@ -19,6 +19,36 @@ namespace soci {
 			groupKey: string;
 		}
 
+		interface Post {
+			post: soci.data.Post;
+		}
+
+		interface Actions {
+			status: 0 | 1 | 2 | 3 | 4;
+		}
+
+		interface Date {
+			isPublished: boolean;
+			date: string;
+		}
+
+		interface Image {
+			link: string;
+		}
+
+		interface Message {
+			message: string;
+		}
+
+		interface Sidebar {
+			status: 0 | 1 | 2 | 3 | 4;
+			channel: string;
+		}
+
+		interface Statistics {
+			channel: string;
+		}
+
 	}
 
 }

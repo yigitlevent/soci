@@ -18,11 +18,11 @@ const StatisticsIcon = styled.img`
 	margin-right: 5px;
 	cursor: pointer;
 	filter: opacity(0.5);
+	filter: brightness(60%);
 	vertical-align: bottom;
 `;
 
-export function Statistics({ channel }: { channel: string; }): JSX.Element {
-
+export function Statistics({ channel }: soci.props.Statistics): JSX.Element {
 	return (
 		<StaticsWrapper>
 			{(channel === "facebook" || channel === "instagrambusiness")

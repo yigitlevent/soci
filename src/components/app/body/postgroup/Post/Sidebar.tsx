@@ -25,7 +25,7 @@ const Icon = styled.img`
 	display: block;
 `;
 
-export function Sidebar({ status, channel }: { status: 0 | 1 | 2 | 3 | 4; channel: string; }): JSX.Element {
+export function Sidebar({ status, channel }: soci.props.Sidebar): JSX.Element {
 	return (
 		<SidebarWrapper status={status}>
 			<Icon src={`./assets/icons/channel_${channel}.svg`} />

@@ -10,6 +10,7 @@ namespace soci {
 			app: {
 				background: string;
 				color: string;
+				hintColor: string;
 				linkColor: string;
 			};
 			logo: {
@@ -18,7 +19,6 @@ namespace soci {
 			};
 			client: {
 				background: string;
-				selectedBackground: string;
 				notificationBackground: string;
 				notificationColor: string;
 			};
@@ -32,7 +32,6 @@ namespace soci {
 			};
 			post: {
 				background: string;
-				color: string;
 				colorFaded: string;
 				border: string;
 				borderImage: string;

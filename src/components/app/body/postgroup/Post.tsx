@@ -41,7 +41,7 @@ const TopbarWrapper = styled.div`
 	height: 40px;
 `;
 
-export function Post({ post }: { post: soci.data.Post; }): JSX.Element {
+export function Post({ post }: soci.props.Post): JSX.Element {
 
 	const selectDate = useCallback((): string => {
 		if (post.is_published) return post.published_at;

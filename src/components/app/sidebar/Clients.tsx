@@ -46,7 +46,7 @@ const ClientSelectedBar = styled.div`
 	height: 36px;
 	width: 10px;
 
-	background: ${(props: soci.theme.StyleProps) => props.theme.client.selectedBackground};
+	background: ${(props: soci.theme.StyleProps) => props.theme.menu.selectedBackground};
 
 	float: left;
 	margin: 0px 0px 0px -19px;
