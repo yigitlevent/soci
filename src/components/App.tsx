@@ -36,7 +36,7 @@ const ThemeChanger = styled.button<{ top: number; }>`
 export const MainContext = createContext({} as soci.context.Main);
 
 export function App(): JSX.Element {
-	const [currentTheme, setCurrentTheme] = useState(DarkTheme);
+	const [currentTheme, setCurrentTheme] = useState(MainTheme);
 	const [currentClient, setCurrentClient] = useState("Client #3");
 	const [currentMenu, setCurrentMenu] = useState("Publish");
 	const [currentSubmenu, setCurrentSubmenu] = useState("Feed");
