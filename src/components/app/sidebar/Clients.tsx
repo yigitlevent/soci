@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 
-import { NotificationsCircle } from "./clients/NotificationsCircle";
+import { ClientsList } from "../../../data/ClientsList";
+
+import { MainContext } from "../../App";
+
+import { Circle } from "./clients/Circle";
 
 const ClientsWrapper = styled.div`
 	height: 100%;
@@ -49,24 +53,17 @@ const ClientSelectedBar = styled.div`
 	border-radius: 9px;
 `;
 
-export function Clients({ selectedClient }: { selectedClient: string; }): JSX.Element {
-	const [clientsList] = useState([
-		{ name: "Client #0", image: "Client0.png", notifications: 0 },
-		{ name: "Client #1", image: "Client1.png", notifications: 99 },
-		{ name: "Client #2", image: "Client2.png", notifications: 0 },
-		{ name: "Client #3", image: "Client3.png", notifications: 29 },
-		{ name: "Client #4", image: "Client4.png", notifications: 0 },
-		{ name: "Client #5", image: "Client5.png", notifications: 0 }
-	]);
+export function Clients(): JSX.Element {
+	const { currentClient } = useContext(MainContext);
 
-	const makeClientIcons = clientsList.map((client, index) => {
-		const isSelected = (client.name === selectedClient);
+	const makeClientIcons = ClientsList.map((client, index) => {
+		const isSelected = (currentClient === client.name);
 
 		return (
-			<ClientIconWrapper key={`${client.name} ${index}`}>
+			<ClientIconWrapper key={index}>
 				{isSelected ? <ClientSelectedBar /> : null}
 
-				{(client.notifications > 0) && !isSelected ? <NotificationsCircle amount={client.notifications} /> : null}
+				{(client.notifications > 0) && !isSelected ? <Circle amount={client.notifications} /> : null}
 
 				<a href={"/#"}>
 					<ClientIcon
@@ -81,7 +78,7 @@ export function Clients({ selectedClient }: { selectedClient: string; }): JSX.El
 
 	return (
 		<ClientsWrapper>
-			{(clientsList.length > 0) ? makeClientIcons : null}
+			{(ClientsList.length > 0) ? makeClientIcons : null}
 		</ClientsWrapper>
 	);
 }

@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#da525c" viewBox="0 0 256 256" opacity="0.6">
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 256 256" opacity="0.6">
 	<rect width="256" height="256" fill="none"></rect>
-	<polyline points="224 208 32 208 32 48" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
-	<polyline points="208.002 64 128.002 144 96.002 112 32.002 176" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
-	<polyline points="208.002 104 208.002 64 168.002 64" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
+	<polyline points="224 208 32 208 32 48" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
+	<polyline points="208.002 64 128.002 144 96.002 112 32.002 176" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
+	<polyline points="208.002 104 208.002 64 168.002 64" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
 </svg>

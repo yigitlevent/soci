@@ -48,4 +48,19 @@ export const GlobalStyle = createGlobalStyle`
 		margin: 0;
 		padding: 0;
 	}
+
+	a {
+		font-family: "Raleway-Bold";
+		color: ${(props: soci.theme.StyleProps) => props.theme.app.linkColor};
+		text-decoration: none;
+
+		&:hover {
+			filter: brightness(110%);
+		}
+
+		&:visited {
+			color: ${(props: soci.theme.StyleProps) => props.theme.app.linkColor};
+			text-decoration: none;
+		}
+	}
 `;

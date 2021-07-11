@@ -11,7 +11,7 @@ const NotificationWrapper = styled.div`
 	z-index: 1;
 `;
 
-const Circle = styled.div`
+const CircleWrapper = styled.div`
 	height: 15px;
 	width: 15px;
 	padding: 1px;
@@ -26,10 +26,10 @@ const Circle = styled.div`
 	border-radius: 100%;
 `;
 
-export function NotificationsCircle({ amount }: { amount: number; }): JSX.Element {
+export function Circle({ amount }: soci.props.Circle): JSX.Element {
 	return (
 		<NotificationWrapper>
-			<Circle>{amount}</Circle>
+			<CircleWrapper>{amount}</CircleWrapper>
 		</NotificationWrapper>
 	);
 }

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 import { Clients } from "./sidebar/Clients";
@@ -15,12 +14,10 @@ const SidebarWrapper = styled.div`
 `;
 
 export function Sidebar(): JSX.Element {
-	const [selectedClient] = useState("Client #3");
-
 	return (
 		<SidebarWrapper>
 			<Logo />
-			<Clients selectedClient={selectedClient} />
+			<Clients />
 			<Menu notifications={29} />
 		</SidebarWrapper>
 	);

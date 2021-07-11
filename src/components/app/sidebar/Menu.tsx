@@ -1,5 +1,11 @@
-import { useCallback, useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
+
+import { MenusList } from "../../../data/MenusList";
+
+import { MainContext } from "../../App";
+
+import { Submenu } from "./menu/Submenu";
 
 const MenuListWrapper = styled.div`
 	height: 100%;
@@ -14,13 +20,13 @@ const MenuWrapper = styled.div`
 
 	background: ${(props: soci.theme.StyleProps) => props.theme.menu.submenuBackground};
 	color: ${(props: soci.theme.StyleProps) => props.theme.menu.color};
+	
 	font-size: 1em;
 	font-family: "Raleway-Medium";
 
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: 52px auto;
-
 `;
 
 const MenuTop = styled.div<{ open: boolean; }>`
@@ -92,147 +98,22 @@ const MenuNotification = styled.div`
 	align-self: center;
 `;
 
-const SubmenuList = styled.ul`
-	max-height: 0;
-	transition-duration: 0.5s;
-	transition-property: max-height;
+export function Menu({ notifications }: soci.props.Menu): JSX.Element {
+	const { currentMenu, setCurrentMenu } = useContext(MainContext);
 
-	background: ${(props: soci.theme.StyleProps) => props.theme.menu.submenuBackground};
-	margin: 0;
-
-	& > li {
-		height: 52px; 
-    	z-index: 1;
-
-		opacity: 0;
-		transform: translateY(-1rem);
-		transition-timing-function: ease;
-		transition-duration: 0.5s;
-		transition-property: opacity, transform;
-
-		& > a {
-			text-decoration: none;
-			color: ${(props: soci.theme.StyleProps) => props.theme.menu.color};
-
-			&:visited {
-				color: ${(props: soci.theme.StyleProps) => props.theme.menu.color} !important;
-			}
-		}
-	}
-	
-	&.open{
-		max-height: 100rem;
-		transition-timing-function: ease;
-		transition-duration: 0.5s;
-		transition-property: max-height;
-
-		& > li {
-			background: ${(props: soci.theme.StyleProps) => props.theme.menu.submenuBackground};
-			z-index: 2;
-
-			opacity: 1;
-			transform: translateY(0);
-			transition-timing-function: ease;
-			transition-duration: 0.5s;
-			transition-property: opacity, transform;
-
-			cursor: pointer;
-
-			height: max-content;
-			padding: 14px 0 12px 10px;
-
-			&:last-child {
-				margin-bottom: 14px;
-			}
-
-			&:hover {
-				filter: brightness(110%);
-			}
-
-			& > a.open {
-				text-decoration: none;
-				color: ${(props: soci.theme.StyleProps) => props.theme.menu.selectedColor};
-
-				&:visited {
-					color: ${(props: soci.theme.StyleProps) => props.theme.menu.selectedColor} !important;
-				}
-			}
-		}
-	}
-`;
-
-export function Menu({ notifications }: { notifications: number; }): JSX.Element {
-	const [menus] = useState([
-		{
-			name: "Summary",
-			submenus: [
-				{ name: "Summary #1", link: "#" },
-				{ name: "Summary #2", link: "#" },
-				{ name: "Summary #3", link: "#" }
-			]
-		},
-		{
-			name: "Publish",
-			submenus: [
-				{ name: "Compose", link: "#" },
-				{ name: "Feed", link: "#" }
-			]
-		},
-		{
-			name: "Engage",
-			submenus: [
-				{ name: "Engage #1", link: "#" },
-				{ name: "Engage #2", link: "#" },
-				{ name: "Engage #3", link: "#" }
-			]
-		},
-		{
-			name: "Listen",
-			submenus: [
-				{ name: "Listen #1", link: "#" },
-				{ name: "Listen #2", link: "#" }
-			]
-		},
-		{
-			name: "Report",
-			submenus: [
-				{ name: "Report #1", link: "#" },
-				{ name: "Report #2", link: "#" },
-				{ name: "Report #3", link: "#" },
-				{ name: "Report #4", link: "#" }
-			]
-		}
-	]);
-
-	const [openMenu, setOpenMenu] = useState("Publish");
-	const [openSubmenu, setOpenSubmenu] = useState("Feed");
-
-	const getSubmenuElements = useCallback((submenus: any[]): JSX.Element[] => {
-		return submenus.map((submenu, index) => {
-			const isOpen = (openSubmenu === submenu.name);
-
-			return (
-				<li key={`${submenu.name} ${index}`} onClick={() => setOpenSubmenu(submenu.name)}>
-					<a href={submenu.link} className={isOpen ? "open" : ""}>{submenu.name}</a>
-				</li>
-			);
-		});
-	}, [openSubmenu]);
-
-	const menuElements = menus.map((menu, index) => {
-		const isOpen = (openMenu === menu.name);
-
+	const menuElements = MenusList.map((menu, index) => {
+		const isMenuOpen = (currentMenu === menu.name);
 		return (
-			<MenuWrapper key={`${menu.name} ${index}`} onClick={() => setOpenMenu(menu.name)}>
-				<MenuTop open={isOpen}>
+			<MenuWrapper key={index} onClick={() => setCurrentMenu(menu.name)}>
+				<MenuTop open={isMenuOpen}>
 					<MenuIcon src={`./assets/icons/menu_${menu.name.toLowerCase()}.svg`} />
 					<MenuTitle>{menu.name}</MenuTitle>
-					<MenuStatus src={"./assets/icons/plus.svg"} />
+					<MenuStatus src={isMenuOpen ? "./assets/icons/minus.svg" : "./assets/icons/plus.svg"} />
 				</MenuTop>
 
-				{isOpen ? <DownArrow /> : null}
+				{isMenuOpen ? <DownArrow /> : null}
 
-				<SubmenuList className={isOpen ? "open" : ""}>{getSubmenuElements(menu.submenus)}</SubmenuList>
+				<Submenu isMenuOpen={isMenuOpen} submenus={menu.submenus} />
 			</MenuWrapper >
 		);
 	});
@@ -240,8 +121,8 @@ export function Menu({ notifications }: { notifications: number; }): JSX.Element
 	return (
 		<MenuListWrapper>
 
-			<MenuWrapper onClick={() => { /* */ }}>
-				<MenuTop open={(openMenu === "Notifications")}>
+			<MenuWrapper onClick={() => setCurrentMenu("Notifications")}>
+				<MenuTop open={(currentMenu === "Notifications")}>
 					<MenuIcon src={"./assets/icons/menu_notifications.svg"} />
 					<MenuTitle>Notifications</MenuTitle>
 					<MenuNotification>{notifications}</MenuNotification>
